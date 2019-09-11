@@ -1,23 +1,24 @@
 import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: ""
+    };
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:3000/posts?q=third")
+      .then(response => response.json())
+      .then(data => this.setState({ data }));
+  }
+
+  render() {
+    console.log("data: ", this.state.data);
+    return <div>loading</div>;
+  }
 }
 
 export default App;
