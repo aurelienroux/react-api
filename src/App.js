@@ -20,27 +20,26 @@ class App extends React.Component {
           <div>loading...</div>
         ) : (
           <div>
-            {this.state.data.map((site, index) => {
-              return (
-                <div key={index}>
-                  <div>{site.title}</div>
-                  <div>{site.id}</div>
-                  <div>{site.address.street}</div>
-                  <div>{site.address.city}</div>
-                  <div>{site.address.zipCode}</div>
-                  <div>{site.contacts.main.firstName}</div>
-                  <div>{site.contacts.main.lastName}</div>
-                  <div>{site.contacts.main.email}</div>
-                  <div>
-                    <img
-                      src={site.images[0]}
-                      alt={`${site.title} headquarters`}
-                    />
+            {this.state.data.map(
+              ({ title, id, address, contacts, images }, index) => {
+                return (
+                  <div key={index}>
+                    <div>{title}</div>
+                    <div>{id}</div>
+                    <div>{address.street}</div>
+                    <div>{address.city}</div>
+                    <div>{address.zipCode}</div>
+                    <div>{contacts.main.firstName}</div>
+                    <div>{contacts.main.lastName}</div>
+                    <div>{contacts.main.email}</div>
+                    <div>
+                      <img src={images[0]} alt={`${title} headquarters`} />
+                    </div>
+                    <hr></hr>
                   </div>
-                  <hr></hr>
-                </div>
-              );
-            })}
+                );
+              }
+            )}
           </div>
         )}
       </div>
