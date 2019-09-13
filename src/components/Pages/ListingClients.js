@@ -26,7 +26,7 @@ class ListingClients extends React.Component {
             {this.state.data.map(({ givenName, id }, index) => {
               return (
                 <div key={index}>
-                  <Link to={`site/${id}`}>
+                  <Link to={`client/${id}`}>
                     <div>{givenName}</div>
                     <div>{id}</div>
                     <hr></hr>

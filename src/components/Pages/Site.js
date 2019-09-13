@@ -1,6 +1,6 @@
 import React from "react";
 
-class Test extends React.Component {
+class Site extends React.Component {
   state = {
     data: "",
     loading: true
@@ -37,4 +37,4 @@ class Test extends React.Component {
   }
 }
 
-export default Test;
+export default Site;
