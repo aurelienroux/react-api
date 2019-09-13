@@ -25,7 +25,7 @@ class App extends React.Component {
               ({ title, id, address, contacts, images }, index) => {
                 return (
                   <div key={index}>
-                    <Link to={`test/${id}`}>
+                    <Link to={`site/${id}`}>
                       <div>{title}</div>
                       <div>{id}</div>
                       <div>{address.street}</div>
