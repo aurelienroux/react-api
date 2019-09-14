@@ -1,43 +1,14 @@
 .listing-clients {
-  padding-bottom: 2rem;
-  padding-top: 2rem;
 
-  .loader {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    min-height: 50vh;
-  }
+  .tag {
+    border: 1px solid $light-grey;
+    margin-right: .5rem;
+    padding: .2rem .4rem;
+    color: $light-grey;
+    font-size: .7rem;
 
-  .client {
-    align-items: center;
-    border-bottom: 1px solid $light-grey;
-    display: flex;
-
-    &:hover {
-      .arrow {
-        padding-right: .5rem;
-        transition: .3s;
-      }
-    }
-
-    .avatar,
-    .infos,
-    .arrow {
-      padding: .5rem 1.5rem .5rem .5rem;
-      transition: .3s;
-    }
-
-    .infos {
-      flex: 1
-    }
-
-    .tag {
-      border: 1px solid $light-grey;
-      margin-right: .5rem;
-      padding: .2rem .4rem;
-      color: $light-grey;
-      font-size: .7rem;
+    @include for-phone-only {
+      display: none;
     }
   }
 }

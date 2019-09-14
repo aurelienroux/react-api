@@ -22,7 +22,7 @@ const ListingClients = () => {
 
   async function fetchUrl() {
     const response = await fetch(
-      "https://tracktik-challenge.staffr.com/clients?_page=1&_limit=10"
+      "https://tracktik-challenge.staffr.com/clients?_page=1&_limit=5"
     );
     const json = await response.json();
 
@@ -32,10 +32,10 @@ const ListingClients = () => {
 
   useEffect(() => {
     fetchUrl();
-  }, [data]);
+  }, []);
 
   return (
-    <Container maxWidth="md" className="listing-clients">
+    <Container maxWidth="md" className="container listing-clients">
       {loading ? (
         <div className="loader">
           <CircularProgress size={50} />
@@ -45,15 +45,15 @@ const ListingClients = () => {
           {data.map(({ givenName, id, logo, tags }, index) => {
             return (
               <Link to={`client/${id}`} key={index}>
-                <div className="client">
-                  <div className="avatar">
+                <div className="item-card">
+                  <div className="item-card__avatar">
                     <Avatar
                       alt={`${givenName} logo`}
                       src={logo}
                       className={classes.bigAvatar}
                     />
                   </div>
-                  <div className="infos">
+                  <div className="item-card__infos">
                     <div>{givenName}</div>
                     {tags.map((tag, index) => (
                       <span className="tag" key={index}>
@@ -61,7 +61,7 @@ const ListingClients = () => {
                       </span>
                     ))}
                   </div>
-                  <div className="arrow">
+                  <div className="item-card__arrow">
                     <ArrowForwardIosIcon />
                   </div>
                 </div>
