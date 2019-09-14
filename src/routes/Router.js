@@ -6,6 +6,7 @@ import ListingSites from "../components/Pages/ListingSites";
 import Site from "../components/Pages/Site";
 import Header from "../components/Layout/Header";
 import Client from "../components/Pages/Client";
+import Footer from "../components/Layout/Footer";
 
 const Router = () => (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const Router = () => (
       <Route path="/clients" component={ListingClients} />
       <Route path="/site/:id" component={Site} />
       <Route path="/client/:id" component={Client} />
+      <Footer />
     </div>
   </BrowserRouter>
 );

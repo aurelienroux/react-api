@@ -1,6 +1,7 @@
 .dashboard {
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 15rem);
 
   @include for-tablet-portrait-up {
     flex-direction: row;
