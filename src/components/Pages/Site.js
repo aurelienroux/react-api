@@ -1,8 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Container, CircularProgress } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Container, CircularProgress, Avatar } from "@material-ui/core";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { Link } from "react-router-dom";
+
+const useStyles = makeStyles({
+  avatar: {
+    margin: 10
+  },
+  bigAvatar: {
+    margin: 10,
+    width: 60,
+    height: 60
+  }
+});
 
 const Site = props => {
-  const [data, setData] = useState([]);
+  const classes = useStyles();
+
+  const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
 
   async function fetchUrl() {
@@ -19,24 +35,58 @@ const Site = props => {
     fetchUrl();
   });
 
+  const goBack = () => {
+    props.history.goBack();
+  };
+
   return (
-    <Container maxWidth="md" className="container">
+    <div className="site">
       {loading ? (
         <div className="loader">
           <CircularProgress />
         </div>
       ) : (
-        <div>
-          <h1>{data[0].title}</h1>
-          <div>
-            <img
-              src={data[0].images[0]}
-              alt={`${data[0].title} headquarters`}
-            />
+        <div className="profile">
+          <div className="header">
+            <Container className="header__container" maxWidth="md">
+              <div onClick={goBack} className="header__arrow">
+                <ArrowBackIosIcon />
+              </div>
+              <Avatar
+                alt={`${data[0].title} headquarters`}
+                src={data[0].images[0]}
+                className={classes.bigAvatar}
+              />
+              <h3>{data[0].title}</h3>
+              <div>
+                {data[0].address.state}, {data[0].address.country},{" "}
+                {data[0].address.zipCode}
+                {data[0].address.street} {data[0].address.city}
+              </div>
+            </Container>
           </div>
+
+          <Container maxWidth="md">
+            <div>
+              <img
+                src={data[0].images[1]}
+                alt={`${data[0].title} headquarters`}
+              />
+            </div>
+            <div className="contact">
+              Contact: {data[0].contacts.main.firstName}{" "}
+              {data[0].contacts.main.lastName}
+              {data[0].contacts.main.jobTitle}
+              {data[0].contacts.main.phoneNumber}
+              {data[0].contacts.main.address.zipCode}
+              {data[0].contacts.main.address.street}
+              {data[0].contacts.main.address.country}
+              {data[0].contacts.main.address.state}
+            </div>
+          </Container>
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 

@@ -1,4 +1,23 @@
-.site {
-  border: 1px solid;
+.profile {
 
+  .header {
+    border: 1px solid;
+    color: $white;
+    background: $blue-google;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+    &__container {
+      border: 1px solid;
+      display: flex;
+      align-items: center;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    &__arrow {
+      cursor: pointer;
+      transition: .3s;
+      padding: .5rem;
+    }
+  }
 }
