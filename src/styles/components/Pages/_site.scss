@@ -45,4 +45,18 @@
       }
     }
   }
+
+  .contact {
+    font-size: .9rem;
+
+    &__icon {
+      padding: 1rem;
+    }
+
+    &__infos {
+      display: flex;
+      align-items: center;
+    }
+  }
+
 }

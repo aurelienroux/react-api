@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, CircularProgress, Avatar } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { Link } from "react-router-dom";
+import PersonIcon from "@material-ui/icons/Person";
+import PhoneIcon from "@material-ui/icons/Phone";
+import MailIcon from "@material-ui/icons/Mail";
+import RoomIcon from "@material-ui/icons/Room";
 
 const useStyles = makeStyles({
   avatar: {
@@ -80,14 +83,48 @@ const Site = props => {
 
           <Container maxWidth="md">
             <div className="contact">
-              Contact: {data[0].contacts.main.firstName}{" "}
-              {data[0].contacts.main.lastName}
-              {data[0].contacts.main.jobTitle}
-              {data[0].contacts.main.phoneNumber}
-              {data[0].contacts.main.address.zipCode}
-              {data[0].contacts.main.address.street}
-              {data[0].contacts.main.address.country}
-              {data[0].contacts.main.address.state}
+              <div className="contact__infos contact__person">
+                <div className="contact__icon">
+                  <PersonIcon />
+                </div>
+                <div>
+                  <div>
+                    {data[0].contacts.main.firstName}{" "}
+                    {data[0].contacts.main.lastName}
+                  </div>
+                  <div>{data[0].contacts.main.jobTitle}</div>
+                </div>
+              </div>
+
+              <div className="contact__infos contact__phone">
+                <div className="contact__icon">
+                  <PhoneIcon />
+                </div>
+
+                {data[0].contacts.main.phoneNumber}
+              </div>
+
+              <div className="contact__infos contact__email">
+                <div className="contact__icon">
+                  <MailIcon />
+                </div>
+
+                {data[0].contacts.main.email}
+              </div>
+
+              <div className=" contact__infos contact__address">
+                <div className="contact__icon">
+                  <RoomIcon />
+                </div>
+                <div>
+                  <div>{data[0].contacts.main.address.street}</div>
+                  <div>
+                    {data[0].contacts.main.address.country},{" "}
+                    {data[0].contacts.main.address.state},{" "}
+                    {data[0].contacts.main.address.zipCode}
+                  </div>
+                </div>
+              </div>
             </div>
           </Container>
         </div>
