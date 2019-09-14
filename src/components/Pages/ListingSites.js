@@ -37,6 +37,7 @@ const ListingSites = () => {
 
   return (
     <Container maxWidth="md" className="container listing-sites">
+      <h1>Sites</h1>
       {loading ? (
         <div className="loader">
           <CircularProgress />

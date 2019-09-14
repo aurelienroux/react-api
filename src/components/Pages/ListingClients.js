@@ -36,6 +36,7 @@ const ListingClients = () => {
 
   return (
     <Container maxWidth="md" className="container listing-clients">
+      <h1>Clients</h1>
       {loading ? (
         <div className="loader">
           <CircularProgress size={50} />
