@@ -77,7 +77,11 @@ export default function TemporaryDrawer() {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6">Scheduling</Typography>
+        <Typography variant="h6">
+          <Link className="home-link" to="/">
+            Scheduling
+          </Link>
+        </Typography>
         <Drawer open={state.left} onClose={toggleDrawer("left", false)}>
           {sideList("left")}
         </Drawer>
