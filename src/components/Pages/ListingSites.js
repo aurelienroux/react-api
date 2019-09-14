@@ -4,6 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Container, CircularProgress, Avatar } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import ReactPaginate from "react-paginate";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const useStyles = makeStyles({
   avatar: {
@@ -55,27 +58,33 @@ const ListingSites = () => {
 
   return (
     <Container maxWidth="md" className="container listing-sites">
-      <h1>Sites</h1>
+      <h1 className="title">Sites</h1>
       {loading ? (
         <div className="loader">
           <CircularProgress />
         </div>
       ) : (
         <div>
-          <select onChange={onItemPerPageChange}>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-          </select>
+          <div className="pagination-options">
+            <span>Items per page</span>
+            <FormControl className={classes.formControl}>
+              <Select value={itemPerPage} onChange={onItemPerPageChange}>
+                <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={10}>10</MenuItem>
+                <MenuItem value={25}>25</MenuItem>
+                <MenuItem value={50}>50</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
           <ReactPaginate
-            previousLabel={"previous"}
-            nextLabel={"next"}
+            previousLabel={"<"}
+            nextLabel={">"}
             breakLabel={"..."}
             breakClassName={"break-me"}
             pageCount={pageCount}
             marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
+            pageRangeDisplayed={3}
             onPageChange={handlePageClick}
             containerClassName={"pagination"}
             subContainerClassName={"pages pagination"}

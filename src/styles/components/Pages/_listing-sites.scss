@@ -1,8 +1,72 @@
 .listing-sites {
 
+  .title {
+    margin-bottom: 0;
+  }
+
   .contact,
   .address {
-    font-size: .7rem;
     color: $light-grey;
+    font-size: .7rem;
+  }
+
+  .pagination-options {
+    align-items: center;
+    display: flex;
+
+    span {
+      font-size: .9rem;
+      margin-right: 1rem;
+    }
+  }
+
+  .pagination {
+    align-items: center;
+    background: $blue-google;
+    display: flex;
+    font-size: .7rem;
+    justify-content: center;
+    min-height: 4rem;
+    padding: 0;
+
+    @include for-tablet-portrait-up {
+      font-size: 1rem;
+    }
+
+    li {
+      display: flex;
+      flex-basis: 1.8rem;
+      flex-basis: 1.8rem;
+      justify-content: center;
+      list-style-type: none;
+
+      @include for-tablet-portrait-up {
+        flex-basis: 3rem;
+      }
+
+      a {
+        align-items: center;
+        color: $white;
+        display: flex;
+        height: 1.8rem;
+        justify-content: center;
+        width: 1.8rem;
+
+        @include for-tablet-portrait-up {
+          font-size: 1rem;
+          height: 3rem;
+          width: 3rem;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      &.active {
+        border-radius: 100%;
+        border: 2px solid white;
+      }
+    }
   }
 }

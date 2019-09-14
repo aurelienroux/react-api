@@ -101,7 +101,7 @@ img {
       max-height: 15rem;
       object-fit: cover;
 
-      @include for-tablet-landscape-up {
+      @include for-tablet-portrait-up {
         max-height: 25rem;
         max-width: 56rem;
       }
