@@ -20,18 +20,13 @@ const ListingClients = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  async function fetchUrl() {
-    const response = await fetch(
-      "https://tracktik-challenge.staffr.com/clients?_page=1&_limit=5"
-    );
-    const json = await response.json();
-
-    setData(json);
-    setLoading(false);
-  }
-
   useEffect(() => {
-    fetchUrl();
+    fetch(`https://tracktik-challenge.staffr.com/clients?_page=1&_limit=5`)
+      .then(response => response.json())
+      .then(data => setData(data))
+      .then(() => setLoading(false));
+
+    return () => console.log("unmounting...");
   }, []);
 
   return (

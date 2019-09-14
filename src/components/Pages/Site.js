@@ -20,23 +20,19 @@ const useStyles = makeStyles({
 
 const Site = props => {
   const classes = useStyles();
-
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
 
-  async function fetchUrl() {
-    const response = await fetch(
-      `https://tracktik-challenge.staffr.com/sites?id=${props.match.params.id}`
-    );
-    const json = await response.json();
-
-    setData(json);
-    setLoading(false);
-  }
-
   useEffect(() => {
-    fetchUrl();
-  });
+    fetch(
+      `https://tracktik-challenge.staffr.com/sites?id=${props.match.params.id}`
+    )
+      .then(response => response.json())
+      .then(data => setData(data))
+      .then(() => setLoading(false));
+
+    return () => console.log("unmounting...");
+  }, [props.match.params.id]);
 
   const goBack = () => {
     props.history.goBack();

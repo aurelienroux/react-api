@@ -17,23 +17,17 @@ const useStyles = makeStyles({
 
 const ListingSites = () => {
   const classes = useStyles();
-
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  async function fetchUrl() {
-    const response = await fetch(
-      "https://tracktik-challenge.staffr.com/sites?_page=1&_limit=5"
-    );
-    const json = await response.json();
-
-    setData(json);
-    setLoading(false);
-  }
-
   useEffect(() => {
-    fetchUrl();
-  });
+    fetch(`https://tracktik-challenge.staffr.com/sites?_page=1&_limit=5`)
+      .then(response => response.json())
+      .then(data => setData(data))
+      .then(() => setLoading(false));
+
+    return () => console.log("unmounting...");
+  }, []);
 
   return (
     <Container maxWidth="md" className="container listing-sites">
