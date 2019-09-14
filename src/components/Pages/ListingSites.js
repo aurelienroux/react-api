@@ -33,7 +33,7 @@ const ListingSites = () => {
 
   useEffect(() => {
     fetchUrl();
-  }, []);
+  });
 
   return (
     <Container maxWidth="md" className="container listing-sites">

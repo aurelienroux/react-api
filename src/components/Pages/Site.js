@@ -1,42 +1,43 @@
-import React from "react";
-import { Container, CircularProgress, Avatar } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { Container, CircularProgress } from "@material-ui/core";
 
-class Site extends React.Component {
-  state = {
-    data: "",
-    loading: true
-  };
+const Site = props => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  async componentDidMount() {
-    await fetch(
-      `https://tracktik-challenge.staffr.com/sites?id=${this.props.match.params.id}`
-    )
-      .then(response => response.json())
-      .then(data => this.setState({ data, loading: false }));
-    console.log("data: ", this.state.data);
-  }
-
-  render() {
-    return (
-      <Container maxWidth="md" className="container">
-        {this.state.loading ? (
-          <div className="loader">
-            <CircularProgress />
-          </div>
-        ) : (
-          <div>
-            <div>{this.state.data[0].title}</div>
-            <div>
-              <img
-                src={this.state.data[0].images[0]}
-                alt={`${this.state.data[0].title} headquarters`}
-              />
-            </div>
-          </div>
-        )}
-      </Container>
+  async function fetchUrl() {
+    const response = await fetch(
+      `https://tracktik-challenge.staffr.com/sites?id=${props.match.params.id}`
     );
+    const json = await response.json();
+
+    setData(json);
+    setLoading(false);
   }
-}
+
+  useEffect(() => {
+    fetchUrl();
+  });
+
+  return (
+    <Container maxWidth="md" className="container">
+      {loading ? (
+        <div className="loader">
+          <CircularProgress />
+        </div>
+      ) : (
+        <div>
+          <h1>{data[0].title}</h1>
+          <div>
+            <img
+              src={data[0].images[0]}
+              alt={`${data[0].title} headquarters`}
+            />
+          </div>
+        </div>
+      )}
+    </Container>
+  );
+};
 
 export default Site;
