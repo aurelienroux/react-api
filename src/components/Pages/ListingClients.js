@@ -1,44 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Container, CircularProgress } from "@material-ui/core";
 
-class ListingClients extends React.Component {
-  state = {
-    data: "",
-    loading: true
-  };
+const ListingClients = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  async componentDidMount() {
-    await fetch(
+  async function fetchUrl() {
+    const response = await fetch(
       "https://tracktik-challenge.staffr.com/clients?_page=1&_limit=10"
-    )
-      .then(response => response.json())
-      .then(data => this.setState({ data, loading: false }));
-    console.log("data: ", this.state.data);
+    );
+    const json = await response.json();
+
+    setData(json);
+    setLoading(false);
   }
 
-  render() {
-    return (
-      <div>
-        {this.state.loading ? (
-          <div>loading...</div>
-        ) : (
-          <div>
-            {this.state.data.map(({ givenName, id }, index) => {
-              return (
-                <div key={index}>
-                  <Link to={`client/${id}`}>
-                    <div>{givenName}</div>
-                    <div>{id}</div>
-                    <hr></hr>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    fetchUrl();
+  }, []);
+
+  return (
+    <Container>
+      {loading ? (
+        <div>
+          <CircularProgress />
+        </div>
+      ) : (
+        <div>
+          {data.map(({ givenName, id }, index) => {
+            return (
+              <div key={index}>
+                <Link to={`client/${id}`}>
+                  <div>{givenName}</div>
+                  <div>{id}</div>
+                  <hr></hr>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </Container>
+  );
+};
 
 export default ListingClients;
