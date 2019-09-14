@@ -71,14 +71,14 @@ const Site = props => {
               </div>
             </Container>
           </div>
+          <div className="picture">
+            <img
+              src={data[0].images[1]}
+              alt={`${data[0].title} headquarters`}
+            />
+          </div>
 
           <Container maxWidth="md">
-            <div>
-              <img
-                src={data[0].images[1]}
-                alt={`${data[0].title} headquarters`}
-              />
-            </div>
             <div className="contact">
               Contact: {data[0].contacts.main.firstName}{" "}
               {data[0].contacts.main.lastName}

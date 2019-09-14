@@ -31,4 +31,18 @@
       font-size: .7rem;
     }
   }
+
+  .picture {
+    text-align: center;
+
+    img {
+      max-height: 15rem;
+      object-fit: cover;
+
+      @include for-tablet-landscape-up {
+        max-height: 25rem;
+        max-width: 56rem;
+      }
+    }
+  }
 }
