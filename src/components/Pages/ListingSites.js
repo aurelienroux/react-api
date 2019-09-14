@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Container, CircularProgress } from "@material-ui/core";
 
 class ListingSites extends React.Component {
   state = {
@@ -16,9 +17,11 @@ class ListingSites extends React.Component {
 
   render() {
     return (
-      <div>
+      <Container>
         {this.state.loading ? (
-          <div>loading...</div>
+          <div>
+            <CircularProgress />
+          </div>
         ) : (
           <div>
             {this.state.data.map(
@@ -31,9 +34,9 @@ class ListingSites extends React.Component {
                       <div>{address.street}</div>
                       <div>{address.city}</div>
                       <div>{address.zipCode}</div>
-                      <div>{contacts.main.firstName}</div>
-                      <div>{contacts.main.lastName}</div>
-                      <div>{contacts.main.email}</div>
+                      <div>
+                        {contacts.main.firstName} {contacts.main.lastName}
+                      </div>
                       <div>
                         <img src={images[0]} alt={`${title} headquarters`} />
                       </div>
@@ -45,7 +48,7 @@ class ListingSites extends React.Component {
             )}
           </div>
         )}
-      </div>
+      </Container>
     );
   }
 }
