@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, CircularProgress, Avatar } from "@material-ui/core";
 
 class Site extends React.Component {
   state = {
@@ -16,11 +17,12 @@ class Site extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
-      <div>
+      <Container maxWidth="md" className="container">
         {this.state.loading ? (
-          <div>loading...</div>
+          <div className="loader">
+            <CircularProgress />
+          </div>
         ) : (
           <div>
             <div>{this.state.data[0].title}</div>
@@ -32,7 +34,7 @@ class Site extends React.Component {
             </div>
           </div>
         )}
-      </div>
+      </Container>
     );
   }
 }
