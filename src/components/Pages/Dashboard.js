@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     padding: 50
   },
   paper: {
-    padding: theme.spacing(10, 20)
+    padding: theme.spacing(3, 6)
   }
 }));
 
@@ -18,17 +18,19 @@ const Dashboard = () => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.container}>
-      <Link to="/sites">
-        <Paper className={classes.paper}>
-          <Typography variant="h4">Sites</Typography>
-        </Paper>
-      </Link>
-      <Link to="/clients">
-        <Paper className={classes.paper}>
-          <Typography variant="h4">Clients</Typography>
-        </Paper>
-      </Link>
+    <Container maxWidth="md" className={classes.container}>
+      <div className="dashboard">
+        <Link className="dashboard__card" to="/sites">
+          <Paper className={classes.paper}>
+            <Typography variant="h4">Sites</Typography>
+          </Paper>
+        </Link>
+        <Link className="dashboard__card" to="/clients">
+          <Paper className={classes.paper}>
+            <Typography variant="h4">Clients</Typography>
+          </Paper>
+        </Link>
+      </div>
     </Container>
   );
 };

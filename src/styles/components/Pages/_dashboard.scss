@@ -1,0 +1,12 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+
+  @include for-tablet-portrait-up {
+    flex-direction: row;
+  }
+
+  &__card {
+    margin: 2rem;
+  }
+}
