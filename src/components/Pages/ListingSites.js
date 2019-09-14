@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
+
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, CircularProgress, Avatar } from "@material-ui/core";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import ReactPaginate from "react-paginate";
-import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+import Grid from "@material-ui/core/Grid";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles({
   avatar: {
@@ -24,36 +28,48 @@ const ListingSites = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [itemCount, setItemCount] = useState(0);
-  const [actualPage, setActualPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
+  const [actualPage, setActualPage] = useState(1);
   const [itemPerPage, setItemPerPage] = useState(5);
+  const [searchQuery, setSearchQuery] = useState("");
 
+  // fetch data for display
   useEffect(() => {
     fetch(
-      `https://tracktik-challenge.staffr.com/sites?_page=${actualPage}&_limit=${itemPerPage}`
+      `https://tracktik-challenge.staffr.com/sites?_page=${actualPage}&_limit=${itemPerPage}&q=${searchQuery}`
     )
       .then(response => response.json())
       .then(data => setData(data))
       .then(() => setLoading(false));
 
-    return () => console.log("unmounting...");
-  }, [actualPage, itemPerPage]);
+    return () => console.log("unmounting data for display...");
+  }, [actualPage, itemPerPage, searchQuery]);
 
+  //fetch data for pagination setup and search query
   useEffect(() => {
-    fetch(`https://tracktik-challenge.staffr.com/sites`)
+    fetch(
+      `https://tracktik-challenge.staffr.com/sites${
+        searchQuery ? `?q=${searchQuery}` : ""
+      }`
+    )
       .then(response => response.json())
       .then(data => setItemCount(data.length))
       .then(() => setPageCount(Math.floor(itemCount / itemPerPage)));
 
-    return () => console.log("unmounting...");
+    return () => console.log("unmounting data for pagination...");
   });
 
+  // pagination and search queryfunctions
   const handlePageClick = e => {
     setActualPage(e.selected + 1);
   };
 
   const onItemPerPageChange = e => {
     setItemPerPage(e.target.value);
+  };
+
+  const onSetSearchQuery = e => {
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -65,16 +81,32 @@ const ListingSites = () => {
         </div>
       ) : (
         <div>
-          <div className="pagination-options">
-            <span>Items per page</span>
-            <FormControl className={classes.formControl}>
-              <Select value={itemPerPage} onChange={onItemPerPageChange}>
-                <MenuItem value={5}>5</MenuItem>
-                <MenuItem value={10}>10</MenuItem>
-                <MenuItem value={25}>25</MenuItem>
-                <MenuItem value={50}>50</MenuItem>
-              </Select>
-            </FormControl>
+          <div className="sites-options">
+            <div className="pagination-options">
+              <span>Items per page</span>
+              <FormControl className={classes.formControl}>
+                <Select value={itemPerPage} onChange={onItemPerPageChange}>
+                  <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={10}>10</MenuItem>
+                  <MenuItem value={25}>25</MenuItem>
+                  <MenuItem value={50}>50</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            <div className="search-input">
+              <Grid container spacing={1} alignItems="flex-end">
+                <Grid item>
+                  <SearchIcon />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    id="input-with-icon-grid"
+                    label="Search..."
+                    onChange={onSetSearchQuery}
+                  />
+                </Grid>
+              </Grid>
+            </div>
           </div>
           <ReactPaginate
             previousLabel={"<"}
@@ -100,7 +132,6 @@ const ListingSites = () => {
                       className={classes.bigAvatar}
                     />
                   </div>
-
                   <div className="item-card__infos">
                     <div>{title}</div>
                     <div className="address">
@@ -116,7 +147,6 @@ const ListingSites = () => {
                       {contacts.main.lastName}
                     </div>
                   </div>
-
                   <div className="item-card__arrow">
                     <ArrowForwardIosIcon />
                   </div>

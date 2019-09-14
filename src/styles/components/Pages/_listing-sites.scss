@@ -10,12 +10,19 @@
     font-size: .7rem;
   }
 
+  .sites-options {
+    @include for-tablet-portrait-up {
+      align-items: flex-end;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
   .pagination-options {
     align-items: center;
     display: flex;
 
     span {
-      font-size: .9rem;
       margin-right: 1rem;
     }
   }
