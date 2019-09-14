@@ -57,11 +57,17 @@ const Site = props => {
                 src={data[0].images[0]}
                 className={classes.bigAvatar}
               />
-              <h3>{data[0].title}</h3>
-              <div>
-                {data[0].address.state}, {data[0].address.country},{" "}
-                {data[0].address.zipCode}
-                {data[0].address.street} {data[0].address.city}
+              <div className="header__infos">
+                <h2 className="header__title">{data[0].title}</h2>
+                <div className="header__address">
+                  <div>
+                    {data[0].address.street}, {data[0].address.city}
+                  </div>
+                  <div>
+                    {data[0].address.state}, {data[0].address.country},{" "}
+                    {data[0].address.zipCode}
+                  </div>
+                </div>
               </div>
             </Container>
           </div>
