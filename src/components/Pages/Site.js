@@ -104,7 +104,6 @@ const Site = props => {
                 <div className="contact__icon">
                   <MailIcon />
                 </div>
-
                 {data[0].contacts.main.email}
               </div>
 

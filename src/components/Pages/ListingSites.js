@@ -76,7 +76,6 @@ const ListingSites = () => {
               </Select>
             </FormControl>
           </div>
-
           <ReactPaginate
             previousLabel={"<"}
             nextLabel={">"}
