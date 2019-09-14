@@ -56,7 +56,7 @@ export default function TemporaryDrawer() {
         </ListItem>
         {["Sites", "Clients"].map(text => (
           <ListItem button key={text}>
-            <Link to={text.toLocaleLowerCase()}>
+            <Link to={`/${text.toLocaleLowerCase()}`}>
               <ListItemText primary={text} />
             </Link>
           </ListItem>
