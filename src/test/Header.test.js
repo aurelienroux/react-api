@@ -1,12 +1,12 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import Header from "../components/Layout/Header";
 import { BrowserRouter as Router } from "react-router-dom";
-import Dashboard from "../components/Pages/Dashboard";
+import { render } from "@testing-library/react";
 
 it("renders component", () => {
   render(
     <Router>
-      <Dashboard />
+      <Header />
     </Router>
   );
 });
