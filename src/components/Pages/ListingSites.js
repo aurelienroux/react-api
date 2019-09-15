@@ -121,39 +121,46 @@ const ListingSites = () => {
             subContainerClassName={"pages pagination"}
             activeClassName={"active"}
           />
-          {data.map(({ title, id, address, contacts, images }, index) => {
-            return (
-              <Link to={`site/${id}`} key={index}>
-                <div className="item-card">
-                  <div className="item-card__avatar">
-                    <Avatar
-                      alt={`${title} headquarters`}
-                      src={images[0]}
-                      className={classes.bigAvatar}
-                    />
-                  </div>
-                  <div className="item-card__infos">
-                    <div>{title}</div>
-                    <div className="address">
-                      <div>
-                        {address.street} {address.city}
+          {data.length > 0 ? (
+            <div>
+              {data.map(({ title, id, address, contacts, images }, index) => {
+                return (
+                  <Link to={`site/${id}`} key={index}>
+                    <div className="item-card">
+                      <div className="item-card__avatar">
+                        <Avatar
+                          alt={`${title} headquarters`}
+                          src={images[0]}
+                          className={classes.bigAvatar}
+                        />
                       </div>
-                      <div>
-                        {address.state}, {address.country}, {address.zipCode}
+                      <div className="item-card__infos">
+                        <div>{title}</div>
+                        <div className="address">
+                          <div>
+                            {address.street} {address.city}
+                          </div>
+                          <div>
+                            {address.state}, {address.country},{" "}
+                            {address.zipCode}
+                          </div>
+                        </div>
+                        <div className="contact">
+                          Contact: {contacts.main.firstName}{" "}
+                          {contacts.main.lastName}
+                        </div>
+                      </div>
+                      <div className="item-card__arrow">
+                        <ArrowForwardIosIcon />
                       </div>
                     </div>
-                    <div className="contact">
-                      Contact: {contacts.main.firstName}{" "}
-                      {contacts.main.lastName}
-                    </div>
-                  </div>
-                  <div className="item-card__arrow">
-                    <ArrowForwardIosIcon />
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+                  </Link>
+                );
+              })}
+            </div>
+          ) : (
+            <p>No results found</p>
+          )}
         </div>
       )}
     </Container>
