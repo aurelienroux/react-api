@@ -2,6 +2,6 @@ import React from "react";
 import { render } from "@testing-library/react";
 import Footer from "../components/Layout/Footer";
 
-it("renders component", () => {
+it("renders component without crashing", () => {
   render(<Footer />);
 });
