@@ -96,7 +96,6 @@ const Site = props => {
                 <div className="contact__icon">
                   <PhoneIcon />
                 </div>
-
                 {data[0].contacts.main.phoneNumber}
               </div>
 
@@ -104,7 +103,7 @@ const Site = props => {
                 <div className="contact__icon">
                   <MailIcon />
                 </div>
-                <a href={"mailto:" + data[0].contacts.main.email}>
+                <a href={`mailto:${data[0].contacts.main.email}`}>
                   {data[0].contacts.main.email}
                 </a>
               </div>
