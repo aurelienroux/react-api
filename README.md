@@ -1,76 +1,69 @@
-## Json server
+# Tracktik challenge
 
-Install [json server](https://github.com/typicode/json-server) globally
+## General infos
 
-```bash
-npm install -g json-server
-```
+- App is deployed on Heroku and liveDemo can see at [this address][heroku]. As it is Heroku, be patient cause it can be long if the app is asleep ^^
+- UI has been partially done with [Material UI lib][mat-ui]
+- Unit tests have been done with [Jest][jest] and [Enzyme][enzyme]
+- a [local json][json-server] server is available and can be run from the server folder with `json-server --watch db.json` to simulate API calls
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+For unit testing, I was only able to test the Components generation and create snapshots for comparison. For some reasons, I wasn't able to simulate DOM manipulation with Enzyme, as node targeting was always returning empty, even if debugging the test would show me the generated markup from Enzyme shallow or react-renderer create function... Have it been working, I would have created mock functions with [Jest spies][jest-spies] and would have tested it with [Expect methods][expect-methods]. \
+Also, I decided to play a little with [React Hooks][react-hooks] and worked with **useEffect** and **useState**. As a consequence, there are no Class Components in the project, only Functional Components with state. \
+As for the UI, I went for [Material UI lib][mat-ui] but it created a lot of extra markup and some components have become pretty big because of that. On a small project like this, I'd choose [Evergreen UI][evergreen-ui] next time as it is more lightweight in my opinion.
+
+---
 
 ## Available Scripts
 
-In the project directory, you can run:
+This project was bootstrapped with [Create React App][create-react-app].
+
+### `npm install`
+
+Install all necessary packages ans stuff
 
 ### `npm start`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Open [http://localhost:3000][local] to view it in the browser.
 
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Editor configuration
 
-### `npm run eject`
+project runs [ESlint][eslint] and [Prettier][prettier]. \
+In VSCode, install the respective plugins and add the following code to your editor JSON settings to activate auto-save and automatic linting
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```json
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "prettier.disableLanguages": [
+    "js"
+  ],
+  "files.autoSave": "onFocusChange"
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[heroku]: https://damp-basin-31817.herokuapp.com/
+[create-react-app]: https://github.com/facebook/create-react-app
+[local]: http://localhost:3000
+[mat-ui]: https://material-ui.com/
+[jest]: https://jestjs.io/
+[enzyme]: https://github.com/airbnb/enzyme
+[eslint]: https://eslint.org/
+[prettier]: https://prettier.io/
+[json-server]: https://github.com/typicode/json-server
+[jest-spies]: https://jestjs.io/docs/en/mock-function-api.html
+[expect-methods]: https://jestjs.io/docs/en/expect#tohavebeencalled
+[react-hooks]: https://fr.reactjs.org/docs/hooks-intro.html
+[evergreen-ui]: https://evergreen.segment.com
