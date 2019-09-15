@@ -1,12 +1,15 @@
 import React from "react";
-import Header from "../components/Layout/Header";
 import { BrowserRouter as Router } from "react-router-dom";
-import { render } from "@testing-library/react";
+import { create } from "react-test-renderer";
+import Header from "../components/Layout/Header";
 
-it("renders component without crashing", () => {
-  render(
-    <Router>
-      <Header />
-    </Router>
-  );
+describe("Button component", () => {
+  test("Matches the snapshot", () => {
+    const header = create(
+      <Router>
+        <Header />
+      </Router>
+    );
+    expect(header.toJSON()).toMatchSnapshot();
+  });
 });

@@ -1,7 +1,10 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { create } from "react-test-renderer";
 import Footer from "../components/Layout/Footer";
 
-it("renders component without crashing", () => {
-  render(<Footer />);
+describe("Button component", () => {
+  test("Matches the snapshot", () => {
+    const footer = create(<Footer />);
+    expect(footer.toJSON()).toMatchSnapshot();
+  });
 });
