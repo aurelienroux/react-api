@@ -1,12 +1,15 @@
 import React from "react";
-import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { create } from "react-test-renderer";
 import Dashboard from "../components/Pages/Dashboard";
 
-it("renders component without crashing", () => {
-  render(
-    <Router>
-      <Dashboard />
-    </Router>
-  );
+describe("Button component", () => {
+  test("Matches the snapshot", () => {
+    const dashboard = create(
+      <Router>
+        <Dashboard />
+      </Router>
+    );
+    expect(dashboard.toJSON()).toMatchSnapshot();
+  });
 });

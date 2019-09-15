@@ -1,7 +1,10 @@
 import React from "react";
+import { create } from "react-test-renderer";
 import ListingSites from "../components//Pages/ListingSites";
-import { render } from "@testing-library/react";
 
-it("renders component without crashing", () => {
-  render(<ListingSites />);
+describe("Button component", () => {
+  test("Matches the snapshot", () => {
+    const listingSites = create(<ListingSites />);
+    expect(listingSites.toJSON()).toMatchSnapshot();
+  });
 });
