@@ -1,14 +1,11 @@
-.listing-clients {
+.listing-clients .tag {
+  border: 1px solid $light-grey;
+  margin-right: .5rem;
+  padding: .2rem .4rem;
+  color: $light-grey;
+  font-size: .7rem;
 
-  .tag {
-    border: 1px solid $light-grey;
-    margin-right: .5rem;
-    padding: .2rem .4rem;
-    color: $light-grey;
-    font-size: .7rem;
-
-    @include for-phone-only {
-      display: none;
-    }
+  @include for-phone-only {
+    display: none;
   }
 }

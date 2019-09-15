@@ -23,6 +23,7 @@ const Client = props => {
       .then(data => setData(data))
       .then(() => setLoading(false));
 
+    // cleaning up effect
     return () => console.log("unmounting...");
   }, [props.match.params.id]);
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
-
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, CircularProgress, Avatar } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
@@ -42,10 +41,11 @@ const ListingSites = () => {
       .then(data => setData(data))
       .then(() => setLoading(false));
 
+    // cleaning up effect
     return () => console.log("unmounting data for display...");
   }, [actualPage, itemPerPage, searchQuery]);
 
-  //fetch data for pagination setup and search query
+  // fetch data for pagination setup and search query
   useEffect(() => {
     fetch(
       `https://tracktik-challenge.staffr.com/sites${
@@ -56,6 +56,7 @@ const ListingSites = () => {
       .then(data => setItemCount(data.length))
       .then(() => setPageCount(Math.floor(itemCount / itemPerPage)));
 
+    // cleaning up effect
     return () => console.log("unmounting data for pagination...");
   });
 

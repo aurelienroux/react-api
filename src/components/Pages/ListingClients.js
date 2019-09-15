@@ -26,6 +26,7 @@ const ListingClients = () => {
       .then(data => setData(data))
       .then(() => setLoading(false));
 
+    // cleaning up effect
     return () => console.log("unmounting...");
   }, []);
 
