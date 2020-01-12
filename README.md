@@ -1,4 +1,4 @@
-# Tracktik challenge
+# API challenge
 
 ## General infos
 
@@ -6,10 +6,6 @@
 - UI has been partially done with [Material UI lib][mat-ui]
 - Unit tests have been done with [Jest][jest] and [Enzyme][enzyme]
 - a [local json][json-server] server is available and can be run from the server folder with `json-server --watch db.json` to simulate API calls
-
-For unit testing, I was only able to test the Components generation and create snapshots for comparison. For some reasons, I wasn't able to simulate DOM manipulation with Enzyme, as node targeting was always returning empty, even if debugging the test would show me the generated markup from Enzyme shallow or react-renderer create function... Have it been working, I would have created mock functions with [Jest spies][jest-spies] and would have tested it with [Expect methods][expect-methods]. \
-Also, I decided to play a little with [React Hooks][react-hooks] and worked with **useEffect** and **useState**. As a consequence, there are no Class Components in the project, only Functional Components with state. \
-As for the UI, I went for [Material UI lib][mat-ui] but it created a lot of extra markup and some components have become pretty big because of that. On a small project like this, I'd choose [Evergreen UI][evergreen-ui] next time as it is more lightweight in my opinion.
 
 ---
 
